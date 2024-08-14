@@ -1,4 +1,8 @@
-﻿namespace Angular_Test.API.Extensions
+﻿using Microsoft.EntityFrameworkCore;
+using Entities;
+using Pomelo.EntityFrameworkCore.MySql;
+
+namespace Angular_Test.API.Extensions
 {
     public static class ServiceExtension
     {
@@ -19,6 +23,15 @@
             {
 
             });
+        }
+
+        public static void ConfigureMySqlContext(this IServiceCollection services, IConfiguration config)
+        {
+            var connectionString = config["mysqlconnection:connectionString"];
+
+            services.AddDbContext<AngularTestDbContext>(o => o.UseMySql(connectionString,
+                MySqlServerVersion.LatestSupportedServerVersion));
+
         }
     }
 }
