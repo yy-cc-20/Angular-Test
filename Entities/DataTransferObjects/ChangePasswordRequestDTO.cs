@@ -9,7 +9,7 @@ namespace Entities.DataTransferObjects
 {
     public class ChangePasswordRequestDTO
     {
-        public Guid User_id { get; set; }
+        public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
         [StringLength(45, ErrorMessage = "Password cannot be longer than 45 characters")]

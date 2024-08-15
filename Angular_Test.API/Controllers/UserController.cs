@@ -15,11 +15,11 @@ namespace Angular_Test.API.Controllers
         private IMapper _mapper;
         private Password _passwordGenerator;
 
-        public UserController(AngularTestDbContext dbContext, IMapper mapper, Password passwordGenerator)
+        public UserController(AngularTestDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _passwordGenerator = passwordGenerator;
+            _passwordGenerator = new Password();
         }
 
         [HttpPost("login")]
@@ -85,7 +85,7 @@ namespace Angular_Test.API.Controllers
                 if (user == null)
                     return NotFound(new { message = $"User with id {id} no found." });
                 
-                return Ok(_mapper.Map<ProductDetailsDTO>(user));
+                return Ok(_mapper.Map<MyProfileDTO>(user));
             }
             catch (Exception ex)
             {
@@ -94,7 +94,6 @@ namespace Angular_Test.API.Controllers
         }
 
         [HttpPost("changepassword")]
-        [ValidateAntiForgeryToken]
         public IActionResult ChangePassword([FromBody] ChangePasswordRequestDTO changePasswordRequestDTO)
         {
             if (!ModelState.IsValid)
@@ -102,10 +101,10 @@ namespace Angular_Test.API.Controllers
 
             try
             {
-                User user = _dbContext.Users.Find(changePasswordRequestDTO.User_id);
+                User user = _dbContext.Users.Find(changePasswordRequestDTO.Id);
 
                 if (user == null)
-                    return NotFound(new { message = $"User with id {changePasswordRequestDTO.User_id} no found." });
+                    return NotFound(new { message = $"User with id {changePasswordRequestDTO.Id} no found." });
 
                 if (user.Password != changePasswordRequestDTO.Current_password)
                     return BadRequest(new { message = "Incorrect password." });

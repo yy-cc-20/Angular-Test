@@ -3,6 +3,7 @@ using Entities;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Angular_Test.API.Controllers
 {
@@ -23,11 +24,31 @@ namespace Angular_Test.API.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<List<ProductDTO>>(_dbContext.Products));
+                List<Product> productList = _dbContext.Products
+                    .Include(x => x.ProductVarianceList).ToList();
+
+                //List<ProductDTO> productDTOList = new List<ProductDTO>();
+
+                //foreach (Product product in productList)
+                //{
+                //    ProductDTO productDTO = new ProductDTO()
+                //    {
+                //        Id = product.Id,
+                //        Name = product.Name,
+                //        Description = product.Description,
+                //        Image_path = product.ImagePath,
+                //        lower_price_range = product.FindLowerPriceRange(),
+                //        upper_price_range = product.FindUpperPriceRange(),
+                //    };
+                //    productDTOList.Add(productDTO);
+                //}
+                List<ProductDTO> productDTOList = _mapper.Map<List<ProductDTO>>(productList);
+
+                return Ok(productDTOList);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex.Message/*"Internal server error"*/);
             }
         }
 
@@ -36,16 +57,37 @@ namespace Angular_Test.API.Controllers
         {
             try
             {
-                Product product = _dbContext.Products.Find(id);
+                Product product = _dbContext.Products
+                    .Include(x => x.ProductVarianceList).FirstOrDefault(x => x.Id.Equals(id));
 
                 if (product == null)
                     return NotFound(new { message = $"Product with id {id} no found." });
 
-                return Ok(_mapper.Map<ProductDetailsDTO>(product));
+                //ProductDetailsDTO productDetailsDTO = new ProductDetailsDTO()
+                //{
+                //    Id = product.Id,
+                //    Name = product.Name,
+                //    Description = product.Description,
+                //    Image_path = product.ImagePath,
+                //    Product_variance_list = new List<ProductVarianceDTO>()
+                //};
+
+                //foreach (ProductVariance productVariance in product.ProductVarianceList)
+                //{
+                //    ProductVarianceDTO productVarianceDTO = new ProductVarianceDTO()
+                //    {
+                //        Id= productVariance.Id,
+                //        Info = productVariance.Info,
+                //        Price = productVariance.Price,
+                //    };
+                //    productDetailsDTO.Product_variance_list.Add(productVarianceDTO);
+                //}
+                List<ProductDetailsDTO> productDetailsDTOList = _mapper.Map<List<ProductDetailsDTO>>(product);
+                return Ok(productDetailsDTO);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, ex.Message/*"Internal server error"*/);
             }
         }
     }
