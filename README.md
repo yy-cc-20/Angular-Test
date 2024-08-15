@@ -1,5 +1,4 @@
 # Angular-Test
----
 
 ## Table of Contents
 - [Features](#features)
@@ -9,7 +8,7 @@
 - [Database Design](#database-design)
 - [API Endpoints](#api-endpoints)
 
-# Features
+## Features
 - Login
 - Forget Password (Account Recovery)
 - View My Profile
@@ -17,14 +16,15 @@
 - View Product List
 - View Product Details
 
-# Technology Used
+## Technology Used
 - Frontend: Angular
 - Backend: .NET
 - Database: MySQL
 - Database first approach
+- Auto Mapper
 
 
-# Installation
+## Installation
 Create Database
 - Find the database migration files at `./Database_Migration` directory
 - Run the sql script to create database 'angular-test' in mysql database
@@ -45,10 +45,19 @@ Install Required Package to `Entities` Project
 Install-Package Microsoft.EntityFrameworkCore
 ```
 
-# Design Pattern
+Run .NET API server
+
+Run Angular Web server
+```
+cd angular-test-web
+npm install rxjs
+ng serve --open
+```
+
+## Design Pattern
 Use data transfer objects to map between models and api request/response.
 
-# Database Design
+## Database Design
 user
 - id: char(36) (PK)
 - username: varchar(45) (not null, unique)
@@ -69,11 +78,11 @@ product_variance
 - price: decimal(6,0) (not null)
 - product_id: char(36)  (FK) (not null)
 
-# API End Points
-- Frontend URL:
+## API End Points
+- Frontend URL: `https://localhost:4200`
 - Backend URL: `https://localhost:7046/api`
 
-## Feature: Login
+### Feature: Login
 Description: Check the username and password are correct.
 
 API End Point: `POST /user/login`
@@ -81,19 +90,19 @@ API End Point: `POST /user/login`
 Request Body:
 ```
 {
-  username: string,
-  password: string
+  "username": string,
+  "password": string
 }
 ```
 Response Body:
 ```
 {
-  user_id: string,
-  username: string
+  "user_id": string,
+  "username": string
 }
 ```
 
-## Feature: Forget Password
+### Feature: Forget Password
 Description: Send temporary password to user's email.
 
 API End Point: `POST /user/forgetpassword`
@@ -101,13 +110,13 @@ API End Point: `POST /user/forgetpassword`
 Request Body:
 ```
 {
-  username: string
+  "username": string
 }
 ```
 Response Status: `204 No Content`
 
 
-## Feature: My Profile
+### Feature: My Profile
 Description: Retrieve user info.
 
 API End Point: `GET /user/[id]`
@@ -115,64 +124,46 @@ API End Point: `GET /user/[id]`
 Response Body:
 ```
 {
-  username: string,
-  email: string
+  "username": string,
+  "email": string
 }
 ```
 
-## Feature: Change Password
-Description: Verify current password and change to new password.
+### Feature: Change Password
+Description: Verify current password, make sure new password is strong and change to new password.
 
 API End Point: `POST /user/changepassword`
 
 Request Body:
 ```
 {
-  user_id: string,
-  current_password: string,
-  new_password: string
+  "id": string,
+  "current_password": string,
+  "new_password": string
 }
-
 ```
 Response Body: `204 No Content`
 
-## Feature: Products
+### Feature: Products
 Description: Retrieve list of products and find price range of each product.
 
 API End Point: `GET /product`
 
 Response Body:
 ```
-{
+[
   {
-    id: string,
-    name: string,
-    description: string,
-    image_path: string,
-    lower_price_range: number,
-    upper_price_range: number
-  },
-  {
-    id: string,
-    name: string,
-    description: string,
-    image_path: string,
-    lower_price_range: number,
-    upper_price_range: number
-  },
-  {
-    id: string,
-    name: string,
-    description: string,
-    image_path: string,
-    lower_price_range: number,
-    upper_price_range: number
+    "id": string,
+    "name": string,
+    "description": string,
+    "image_path": string,
+    "lower_price_range": number,
+    "upper_price_range": number
   }
-}
-
+]
 ```
 
-## Feature: Product Details
+### Feature: Product Details
 Description: Retrieve product details by id.
 
 API End Point: `GET /product/[id]`
@@ -180,27 +171,16 @@ API End Point: `GET /product/[id]`
 Response Body:
 ```
 {
-  id: string,
-  name: string,
-  description: string,
-  image_path: string,
-  product_variance_list: 
-  {
+  "id": string,
+  "name": string,
+  "description": string,
+  "image_path": string,
+  "product_variance_list": [
     {
-      id: string,
-      info: string,
-      price: number,
-    },
-    {
-      id: string,
-      info: string,
-      price: number,
-    },
-    {
-      id: string,
-      info: string,
-      price: number,
-    },
-  }
+      "id": string,
+      "info": string,
+      "price": number
+    }
+  ]
 }
 ```
