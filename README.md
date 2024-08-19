@@ -131,6 +131,8 @@ Response Body:
 
 ### Feature: Change Password
 Description: Verify current password, make sure new password is strong and change to new password.
+### Feature: Change Password
+Description: Verify current password and change to new password.
 
 API End Point: `POST /user/changepassword`
 
