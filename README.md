@@ -10,7 +10,7 @@
 
 ## Features
 - Login
-- Forget Password (Account Recovery)
+- Forget Password
 - View My Profile
 - Change Password
 - View Product List
@@ -50,7 +50,7 @@ Run .NET API server
 Run Angular Web server
 ```
 cd angular-test-web
-npm install rxjs
+npm install
 ng serve --open
 ```
 
@@ -102,10 +102,10 @@ Response Body:
 }
 ```
 
-### Feature: Forget Password
+### Feature: Reset Password
 Description: Send temporary password to user's email.
 
-API End Point: `POST /user/forgetpassword`
+API End Point: `POST /user/reset-password`
 
 Request Body:
 ```
@@ -130,11 +130,9 @@ Response Body:
 ```
 
 ### Feature: Change Password
-Description: Verify current password, make sure new password is strong and change to new password.
-### Feature: Change Password
 Description: Verify current password and change to new password.
 
-API End Point: `POST /user/changepassword`
+API End Point: `POST /user/change-password`
 
 Request Body:
 ```
@@ -177,7 +175,7 @@ Response Body:
   "name": string,
   "description": string,
   "image_path": string,
-  "product_variance_list": [
+  "variance_list": [
     {
       "id": string,
       "info": string,

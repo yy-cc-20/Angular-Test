@@ -1,0 +1,16 @@
+<nav>
+  <div *ngIf="isLoggedIn">
+    Hello {{ username }}
+  </div>
+
+  <div *ngIf="time !== ''">
+    Time: {{ time }}
+  </div>
+
+  <div *ngIf="isLoggedIn; else login" >
+    <a onclick="logout()">Logout</a>
+  </div>
+  <ng-template #login>
+    <a [routerLink]="['Login']">Login</a>
+  </ng-template>
+</nav>

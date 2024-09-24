@@ -44,8 +44,8 @@ namespace Angular_Test.API.Controllers
             }
         }
      
-        [HttpPost("forgetpassword")]
-        public IActionResult ForgetPassword([FromBody] AccountRecoveryRequestDTO accountRecoveryRequestDTO)
+        [HttpPost("reset-password")]
+        public IActionResult ResetPassword([FromBody] AccountRecoveryRequestDTO accountRecoveryRequestDTO)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { message = "Invalid request format." });
@@ -93,7 +93,7 @@ namespace Angular_Test.API.Controllers
             }
         }
 
-        [HttpPost("changepassword")]
+        [HttpPost("change-password")]
         public IActionResult ChangePassword([FromBody] ChangePasswordRequestDTO changePasswordRequestDTO)
         {
             if (!ModelState.IsValid)
