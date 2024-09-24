@@ -12,6 +12,7 @@ import { NgFor, NgIf, UpperCasePipe, Location } from '@angular/common';
   styleUrl: './forget-password.component.css'
 })
 export class ForgetPasswordComponent {
+  showCheckEmailMessage = false;
   resetPasswordForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
   });
@@ -22,21 +23,13 @@ export class ForgetPasswordComponent {
 
   onSubmit() {
     if (this.resetPasswordForm.valid) {
-      // go to api to make sure the username and password is match
-      this.apiService.resetPassword(this.resetPasswordForm.value.username!)
-        .subscribe({
-          //next: () => {
-          //  // tell user to check their email for temporary password
-          //},
-          error: (error) => {
-            console.error('Login error:', error);
-          },
-          complete: () => {
-            // tell user to check their email for temporary password
-          }
-        });
+      this.tellUserCheckEmail()
     } else {
       this.resetPasswordForm.markAllAsTouched();
     }
+  }
+
+  tellUserCheckEmail() {
+    this.showCheckEmailMessage = true;
   }
 }

@@ -22,18 +22,57 @@ namespace Angular_Test.API.Controllers
             _passwordGenerator = new Password();
         }
 
+        //[HttpPost("register")]
+        //public IActionResult Register([FromBody] RegisterRequestDTO registerRequestDTO)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(new { message = "Invalid request format." });
+
+        //    try
+        //    {
+        //        User user = _dbContext.Users.FirstOrDefault(x => x.Username == registerRequestDTO.Username);
+
+        //        if (user != null)
+        //            return BadRequest(new { message = $"Username already exist." });
+
+        //        user.Id = Guid.NewGuid();
+        //        user.Username = registerRequestDTO.Username;    
+        //        user.Password = registerRequestDTO.Password;
+        //        user.Email = registerRequestDTO.Email;
+        //        _dbContext.Users.Create(user);
+        //        _dbContext.SaveChanges();
+
+        //        return NoContent();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequestDTO loginRequestDTO)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(new { message = "Invalid request format." });
+
             try
             {
-                User user = _dbContext.Users.FirstOrDefault(x => x.Username == loginRequestDTO.Username);
+                //User user = _dbContext.Users.FirstOrDefault(x => x.Username == loginRequestDTO.Username);
 
-                if (user == null) 
-                    return NotFound(new { message = "The username or password is wrong." });
+                //if (user == null) 
+                //    return NotFound(new { message = "The username or password is wrong." });
 
-                if (user.Password != loginRequestDTO.Password)
-                    return NotFound(new { message = "The username or password is wrong." });
+                //if (user.Password != loginRequestDTO.Password)
+                //    return NotFound(new { message = "The username or password is wrong." });
+
+                User user = new User()
+                {
+                    Id = Guid.NewGuid(),
+                    Username = loginRequestDTO.Username,
+                    Email = "example@email.com",
+                    Password = loginRequestDTO.Password,
+                };
 
                 // Meet authorization condition
                 return Ok(_mapper.Map<LoginResponseDTO>(user));
@@ -44,47 +83,55 @@ namespace Angular_Test.API.Controllers
             }
         }
      
-        [HttpPost("reset-password")]
-        public IActionResult ResetPassword([FromBody] AccountRecoveryRequestDTO accountRecoveryRequestDTO)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(new { message = "Invalid request format." });
+        //[HttpPost("reset-password")]
+        //public IActionResult ResetPassword([FromBody] AccountRecoveryRequestDTO accountRecoveryRequestDTO)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(new { message = "Invalid request format." });
 
-            try
-            {
-                User user = _dbContext.Users.FirstOrDefault(x => x.Username == accountRecoveryRequestDTO.Username);
+        //    try
+        //    {
+        //        User user = _dbContext.Users.FirstOrDefault(x => x.Username == accountRecoveryRequestDTO.Username);
 
-                if (user == null)
-                    return NotFound(new { message = $"Username {accountRecoveryRequestDTO.Username} no found." });
+        //        if (user == null)
+        //            return NotFound(new { message = $"Username {accountRecoveryRequestDTO.Username} no found." });
 
-                // generate new password
-                string newPassword = _passwordGenerator.Next();
+        //        // generate new password
+        //        string newPassword = _passwordGenerator.Next();
 
-                // save the new password
-                user.Password = newPassword;
-                _dbContext.Users.Update(user);
-                _dbContext.SaveChanges();
+        //        // save the new password
+        //        user.Password = newPassword;
+        //        _dbContext.Users.Update(user);
+        //        _dbContext.SaveChanges();
 
-                // TODO send the new password to user email
+        //        // TODO send the new password to user email
 
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal server error");
-            }
-        }
+        //        return NoContent();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, "Internal server error");
+        //    }
+        //}
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(string id)
         {
             try
             {
-                User user = _dbContext.Users.Find(id);
-                
-                if (user == null)
-                    return NotFound(new { message = $"User with id {id} no found." });
-                
+                //User user = _dbContext.Users.Find(id);
+
+                //if (user == null)
+                //    return NotFound(new { message = $"User with id {id} no found." });
+
+                User user = new User()
+                {
+                    Id = Guid.NewGuid(),
+                    Username = "tester",
+                    Email = "example@email.com",
+                    Password = "secret",
+                };
+
                 return Ok(_mapper.Map<MyProfileDTO>(user));
             }
             catch (Exception ex)

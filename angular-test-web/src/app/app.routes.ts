@@ -35,11 +35,6 @@ export const routes: Routes = [
     data: { breadcrumb: 'Log-In' }
   },
   {
-    path: 'Login/ForgetPswd',
-    redirectTo: 'ForgetPswd',
-    pathMatch: 'full'
-  },
-  {
     path: 'ForgetPswd',
     component: ForgetPasswordComponent,
     title: 'Forget Password',

@@ -9,7 +9,7 @@ builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenLocalhost(7046, listenOptions =>
     {
-        listenOptions.UseHttps(); // Remove or comment out if not using HTTPS
+        listenOptions.UseHttps(); 
     });
 });
 

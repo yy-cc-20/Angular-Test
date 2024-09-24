@@ -31,7 +31,7 @@ export class LoginFormComponent {
         .subscribe({
           next: (response) => {
             // create session to store user info
-            this.authenticationService.setUser(response.user_id, response.username);
+            this.authenticationService.login(response.user_id, response.username);
         },
         error: (error) => {
           console.error('Login error:', error);
