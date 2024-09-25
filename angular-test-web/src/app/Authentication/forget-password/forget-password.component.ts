@@ -23,13 +23,9 @@ export class ForgetPasswordComponent {
 
   onSubmit() {
     if (this.resetPasswordForm.valid) {
-      this.tellUserCheckEmail()
+      alert("Please check your email for new password.");
     } else {
       this.resetPasswordForm.markAllAsTouched();
     }
-  }
-
-  tellUserCheckEmail() {
-    this.showCheckEmailMessage = true;
   }
 }

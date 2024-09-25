@@ -102,20 +102,6 @@ Response Body:
 }
 ```
 
-### Feature: Reset Password
-Description: Send temporary password to user's email.
-
-API End Point: `POST /user/reset-password`
-
-Request Body:
-```
-{
-  "username": string
-}
-```
-Response Status: `204 No Content`
-
-
 ### Feature: My Profile
 Description: Retrieve user info.
 

@@ -24,9 +24,9 @@ export class AngularTestApiService {
       console.error('An error occurred:', error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
-      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+      console.error(`Backend returned code ${error.status}, ` /*+ `body was: ${JSON.stringify(error.error)}`*/);
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError(error/*() => new Error('Something bad happened; please try again later.')*/);
   }
 
   login(username: string, password: string): Observable<any> {

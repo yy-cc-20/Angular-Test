@@ -5,6 +5,7 @@ import { DashboardComponent } from './Dashboard/dashboard.component';
 import { authenticationGuard } from './Authentication/authentication.guard';
 import { LoginFormComponent } from './Authentication/login-form/login-form.component';
 import { ForgetPasswordComponent } from './Authentication/forget-password/forget-password.component';
+import { LogoutComponent } from './Authentication/logout/logout.component';
 import { UnauthorizedComponent } from './Authentication/unauthorized/unauthorized.component';
 
 import { MyProfileComponent } from './User/my-profile/my-profile.component';
@@ -13,32 +14,31 @@ import { ChangePasswordFormComponent } from './User/change-password-form/change-
 import { ProductListComponent } from './Product/product-list/product-list.component';
 import { ProductDetailsComponent } from './Product/product-details/product-details.component';
 
-import { RouteNotFoundComponent } from './Navigation/route-not-found/route-not-found.component';
-
-
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'Dashboard',
-    pathMatch: 'full'
+    component: DashboardComponent
   },
   {
     path: 'Dashboard',
     component: DashboardComponent,
-    title: 'Dashboard',
-    data: { breadcrumb: '' }
+    title: 'Dashboard'
   },
   {
     path: 'Login',
     component: LoginFormComponent,
-    title: 'Login',
-    data: { breadcrumb: 'Log-In' }
+    title: 'Login'
   },
   {
     path: 'ForgetPswd',
     component: ForgetPasswordComponent,
-    title: 'Forget Password',
-    data: { breadcrumb: 'Forget Password' }
+    title: 'ForgetPswd'
+  },
+  {
+    path: 'Logout',
+    component: LogoutComponent,
+    title: 'Logout',
+    canActivate: [authenticationGuard]
   },
   {
     path: 'Unauthorized',
@@ -49,8 +49,7 @@ export const routes: Routes = [
     path: 'MyProfile',
     component: MyProfileComponent,
     title: 'My Profile',
-    data: { breadcrumb: 'My Profile' },
-    canActivate: [authenticationGuard],
+    canActivate: [authenticationGuard]
   },
   {
     path: 'ChangePswd',
@@ -72,11 +71,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'NotFound'
+    component: DashboardComponent,
+    pathMatch: 'full'
   },
-  {
-    path: 'NotFound',
-    component: RouteNotFoundComponent,
-    title: 'Not Found'
-  }
 ];

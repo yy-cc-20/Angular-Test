@@ -146,26 +146,27 @@ namespace Angular_Test.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(new { message = "New password is invalid." });
 
-            try
-            {
-                User user = _dbContext.Users.Find(changePasswordRequestDTO.Id);
+            //try
+            //{
+            //    User user = _dbContext.Users.Find(changePasswordRequestDTO.Id);
 
-                if (user == null)
-                    return NotFound(new { message = $"User with id {changePasswordRequestDTO.Id} no found." });
+            //    if (user == null)
+            //        return NotFound(new { message = $"User with id {changePasswordRequestDTO.Id} no found." });
 
-                if (user.Password != changePasswordRequestDTO.Current_password)
-                    return BadRequest(new { message = "Incorrect password." });
+            //    if (user.Password != changePasswordRequestDTO.Current_password)
+            //        return BadRequest(new { message = "Incorrect password." });
                 
-                // Meet change password conditions
-                user.Password = changePasswordRequestDTO.New_password;
-                _dbContext.Users.Update(user);
-                _dbContext.SaveChanges();
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal server error");
-            }
+            //    // Meet change password conditions
+            //    user.Password = changePasswordRequestDTO.New_password;
+            //    _dbContext.Users.Update(user);
+            //    _dbContext.SaveChanges();
+            //    return NoContent();
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, "Internal server error");
+            //}
+            return NoContent();
         }
     }
 }

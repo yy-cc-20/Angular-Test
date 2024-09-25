@@ -25,7 +25,7 @@ export class MyProfileComponent implements OnInit {
           this.email = response.email;
         },
         error: (error) => {
-          console.error('Login error:', error);
+          console.error('My profile error:', error);
         },
         complete: () => {
           
