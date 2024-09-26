@@ -1,1 +1,18 @@
-<p>product-list works!</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Price Range (RM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of productList">
+      <td><a href="Product/{{ product.id }}">{{ product.name }}</a></td>
+      <td class="description">{{ product.description }}</td>
+      <td><img src="{{ product.image_path }}" alt="Product image" width="150" ></td>
+      <td>{{ product.lower_price_range | number:'1.0-0' }} - {{ product.upper_price_range | number:'1.0-0' }}</td>
+    </tr>
+  </tbody>
+</table>

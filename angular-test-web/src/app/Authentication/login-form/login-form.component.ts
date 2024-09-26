@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AngularTestApiService } from '../../angular-test-api.service';
-import { ActivatedRoute, RouterModule, Router } from '@angular/router';
-import { NgFor, NgIf, UpperCasePipe, Location } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
+import { NgIf } from '@angular/common';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -26,19 +26,15 @@ export class LoginFormComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      // go to api to make sure the username and password is match
       this.apiService.login(this.loginForm.value.username!, this.loginForm.value.password!)
         .subscribe({
           next: (response) => {
-            // create session to store user info
             this.authenticationService.login(response.user_id, response.username);
         },
         error: (error) => {
           console.error('Login error:', error);
         },
           complete: () => {
-          // redirect to next page
-          this.router.navigate(['MyProfile']); 
         }
       });
     } else {

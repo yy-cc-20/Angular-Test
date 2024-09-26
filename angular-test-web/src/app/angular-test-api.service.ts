@@ -3,10 +3,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { User } from './User/user.model';
-import { Product } from './Product/product.model';
-import { ProductVariance } from './Product/product-variance.model';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,13 +15,13 @@ export class AngularTestApiService {
 
   // Handle Errors
   private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      console.error(`Backend returned code ${error.status}, ` /*+ `body was: ${JSON.stringify(error.error)}`*/);
-    }
+    //if (error.error instanceof ErrorEvent) {
+    //  // A client-side or network error occurred.
+    //  console.error('An error occurred:', error.error.message);
+    //} else {
+    //  // The backend returned an unsuccessful response code.
+    //  console.error(`Backend returned code ${error.status}, ` /*+ `body was: ${JSON.stringify(error.error)}`*/);
+    //}
     return throwError(error/*() => new Error('Something bad happened; please try again later.')*/);
   }
 
@@ -59,13 +55,13 @@ export class AngularTestApiService {
 
   getProducts(): Observable<any[]> {
     const url = `${this.apiUrl}/product`;
-    return this.http.get<Product[]>(url)
+    return this.http.get<any[]>(url)
       .pipe(catchError(this.handleError));
   }
 
   getProductDetails(productId: string): Observable<any> {
     const url = `${this.apiUrl}/product/${productId}`;
-    return this.http.get<Product>(url)
+    return this.http.get<any>(url)
       .pipe(catchError(this.handleError));
   }
 }

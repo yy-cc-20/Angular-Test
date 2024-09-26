@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication.service';
-import { ActivatedRoute, RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
@@ -16,16 +16,15 @@ export class LogoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    //this.apiService.login(token)
+    //this.apiService.logout(token)
     //  .subscribe({
     //    next: (response) => {
-          this.authenticationService.logout();
+        this.authenticationService.logout();
         //},
         //error: (error) => {
         //  console.error('Logout error:', error);
         //},
         //complete: () => {
-          this.router.navigate(['Dashboard']);
       //  }
       //});
   }

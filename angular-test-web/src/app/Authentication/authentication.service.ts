@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { User } from '../User/user.model';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 
 @Injectable({
@@ -16,6 +15,7 @@ export class AuthenticationService {
 
     sessionStorage.setItem(this.userSessionKey, JSON.stringify({ userid, username }));
     this.router.navigate(['MyProfile']);
+
     //window.location.reload();
   }
 

@@ -82,7 +82,7 @@ namespace Angular_Test.API.Controllers
                 //    };
                 //    productDetailsDTO.Product_variance_list.Add(productVarianceDTO);
                 //}
-                List<ProductDetailsDTO> productDetailsDTO = _mapper.Map<List<ProductDetailsDTO>>(product);
+                ProductDetailsDTO productDetailsDTO = _mapper.Map<ProductDetailsDTO>(product);
                 return Ok(productDetailsDTO);
             }
             catch (Exception ex)

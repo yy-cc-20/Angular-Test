@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Validators, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AngularTestApiService } from '../../angular-test-api.service';
-import { ActivatedRoute, RouterModule, Router } from '@angular/router';
-import { NgFor, NgIf, UpperCasePipe, Location } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-forget-password',

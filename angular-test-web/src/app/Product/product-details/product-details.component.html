@@ -1,1 +1,27 @@
-<p>product-details works!</p>
+<div *ngIf="!invalidProduct; else invalid">
+  <h2>{{ product.name }}</h2>
+  <img src="{{ product.image_path }}" alt="Product image" width="300" height="200">
+    
+  <table>
+    <tr>
+      <th>Description</th>
+      <td class="description">{{ product.description }}</td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <th>Variance</th>
+    </tr>
+    <tr *ngFor="let variance of product.product_variance_list">
+      <th>{{ variance.info }} </th>
+      <td>{{ variance.price | number:'1.0-0' }} </td>
+    </tr>
+  </table>
+
+</div>
+
+<ng-template #invalid>
+  <h2>Invalid Product ID</h2>
+</ng-template>
+
+<button (click)="goBack()">Back</button>

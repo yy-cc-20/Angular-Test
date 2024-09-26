@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf, UpperCasePipe, Location } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',

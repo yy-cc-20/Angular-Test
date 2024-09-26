@@ -1,3 +1,9 @@
-<div>
-  #todo breadcrumb
-</div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs;">
+      <!--<a *ngIf="!last" href="[breadcrumb.url]"></a>-->
+      <!--<span *ngIf="last"></span>-->
+      {{breadcrumb.label}}
+    </li>
+  </ol>
+</nav>
