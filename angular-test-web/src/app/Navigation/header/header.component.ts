@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet, ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { NgFor, NgIf, UpperCasePipe, Location } from '@angular/common';
 import { AuthenticationService } from '../../Authentication/authentication.service';
@@ -15,17 +15,24 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string = '';
   private timer: any;
+  loginLogoutEvent = this.authenticationService.getLoginLogoutEvent()
 
-  constructor(
-    private authenticationService: AuthenticationService ) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
+    this.loginLogoutEvent.subscribe(() => {
+      this.showLoginOrLogout()
+    })
+  }
 
-  ngOnInit(): void {
+  showLoginOrLogout() {
     this.isLoggedIn = this.authenticationService.isLoggedIn();
 
     if (this.isLoggedIn)
       this.username = this.authenticationService.getCurrentUser().username;
+  }
 
+  ngOnInit(): void {
     this.updateTime();
+    this.showLoginOrLogout()
     //this.timer = setInterval(() => { this.updateTime(); }, 1000); // this line cause the web page loading none stop
   }
 

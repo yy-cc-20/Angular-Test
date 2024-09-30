@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgFor, NgIf, UpperCasePipe, Location } from '@angular/common';
 
@@ -14,13 +14,15 @@ import { BreadcrumbComponent } from './Navigation/breadcrumb/breadcrumb.componen
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   isLoggedIn = false;
+  loginLogoutEvent = this.authenticationService.getLoginLogoutEvent()
+
   constructor(
     private authenticationService: AuthenticationService,
-  ) { }
-
-  ngOnInit() {
-    this.isLoggedIn = this.authenticationService.isLoggedIn();
+  ) {
+      this.loginLogoutEvent.subscribe(() => {
+        this.isLoggedIn = this.authenticationService.isLoggedIn();
+      })
   }
 }

@@ -1,54 +1,59 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 import { NgFor, NgIf } from '@angular/common';
-
-interface BreadcrumbItem {
-  label: string;
-  url: string;
-}
+import { Location } from '@angular/common';
+import { BreadcrumbService } from '../breadcrumb/breadcrumb.service'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumb',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [NgFor, NgIf, RouterModule],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.css'
 })
 export class BreadcrumbComponent {
-  breadcrumbsList = [{
-    title: String,
-    url: String
-  }];
+  breadcrumb = ""
+  private subscription: Subscription = new Subscription();
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+    constructor(
+      private location: Location,
+      private router: Router,
+      private breadcrumbService: BreadcrumbService
+    ) {
+        this.subscription = this.breadcrumbService.productName$.subscribe(name => {
+          this.setBreadcrumb(name);
+        });
 
-  ngOnInit(): void {
-    const fullRouteArray = this.getFullRouteArray(this.route.snapshot);
-    console.log('Full route array:', fullRouteArray);
+        this.router.events.subscribe((event) => {
+          this.setBreadcrumb();
+        })
+    }
+
+  setBreadcrumb(productName = '') {
+    if (this.location.isCurrentPathEqualTo("/Login"))
+      this.breadcrumb = "Log-In"
+
+    else if (this.location.isCurrentPathEqualTo("/ForgetPswd"))
+      this.breadcrumb = "Forget Password"
+
+    else if (this.location.isCurrentPathEqualTo("/Unauthorized"))
+      this.breadcrumb = "Unauthorized"
+
+    else if (this.location.isCurrentPathEqualTo("/MyProfile"))
+      this.breadcrumb = "My Profile"
+
+    else if (this.location.isCurrentPathEqualTo("/ChangePswd"))
+      this.breadcrumb = "Profile/Change Password"
+
+    else if (this.location.isCurrentPathEqualTo("/Product"))
+      this.breadcrumb = "Product"
+
+    else if (this.location.path().includes("Product"))
+      this.breadcrumb = `Product/${productName}`
   }
 
-  // Recursive method to traverse the route tree and get the full path
-  getFullRouteArray(routeSnapshot: ActivatedRouteSnapshot): string[] {
-    let routesArray: string[] = [];
-
-    // Traverse up the route tree to the parent
-    let currentRoute = routeSnapshot;
-    while (currentRoute) {
-      if (currentRoute.url && currentRoute.url.length) {
-        const routePath = currentRoute.url.map(segment => segment.path).join('/');
-        routesArray.unshift(routePath);  // Add at the beginning to maintain the correct order
-      }
-      currentRoute = currentRoute.parent;
-    }
-
-    // Add any child routes if present
-    if (routeSnapshot.children && routeSnapshot.children.length) {
-      routeSnapshot.children.forEach(child => {
-        const childPaths = this.getFullRouteArray(child);  // Recursively get child routes
-        routesArray = routesArray.concat(childPaths);
-      });
-    }
-
-    return routesArray;
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

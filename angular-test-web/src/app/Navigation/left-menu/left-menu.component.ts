@@ -12,13 +12,18 @@ import { AuthenticationService } from '../../Authentication/authentication.servi
 })
 export class LeftMenuComponent {
   isLoggedIn: boolean = false;
+  highlightMyProfile = false;
+  highlightChangePassword = false;
+  highlightProducts = false;
+  loginLogoutEvent = this.authenticationService.getLoginLogoutEvent()
 
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router
-  ) { }
-
-  ngOnInit(): void {
-    this.isLoggedIn = this.authenticationService.isLoggedIn();
+    private router: Router,
+    private location: Location
+  ) {
+    this.loginLogoutEvent.subscribe(() => {
+      this.isLoggedIn = this.authenticationService.isLoggedIn();
+    })
   }
 }

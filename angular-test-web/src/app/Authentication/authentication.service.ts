@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 
 @Injectable({
@@ -6,14 +6,22 @@ import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 })
 export class AuthenticationService {
   private userSessionKey = 'userSession';
+  loginLogoutEvent = new EventEmitter();
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    
+  }
+
+  getLoginLogoutEvent() {
+    return this.loginLogoutEvent;
+  }
 
   login(userid: string, username: string) {
     if (typeof sessionStorage === 'undefined')
       return
 
     sessionStorage.setItem(this.userSessionKey, JSON.stringify({ userid, username }));
+    this.loginLogoutEvent.emit();
     this.router.navigate(['MyProfile']);
 
     //window.location.reload();
@@ -32,6 +40,7 @@ export class AuthenticationService {
       return
 
     sessionStorage.removeItem(this.userSessionKey);
+    this.loginLogoutEvent.emit();
     this.router.navigate(['Dashboard']);
     //window.location.reload();
 

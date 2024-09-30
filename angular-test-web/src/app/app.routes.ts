@@ -27,7 +27,8 @@ export const routes: Routes = [
   {
     path: 'Login',
     component: LoginFormComponent,
-    title: 'Login'
+    title: 'Login',
+    canActivate: [authenticationGuard],
   },
   {
     path: 'ForgetPswd',

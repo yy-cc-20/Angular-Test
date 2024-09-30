@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { AngularTestApiService } from '../../angular-test-api.service';
 import { DecimalPipe } from '@angular/common';
 import { NgFor, NgIf } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BreadcrumbService } from '../../Navigation/breadcrumb/breadcrumb.service'
 
 @Component({
   selector: 'app-product-details',
@@ -29,6 +30,8 @@ export class ProductDetailsComponent {
   constructor(
     private apiService: AngularTestApiService,
     private route: ActivatedRoute,
+    private breadcrumbService: BreadcrumbService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,18 +40,19 @@ export class ProductDetailsComponent {
       .subscribe({
         next: (response) => {
           this.product = response;
+          this.breadcrumbService.setProductName(this.product.name)
         },
         error: (error) => {
           this.invalidProduct = true;
           //console.error('Product details error:', error);
         },
         complete: () => {
-
+          
         }
       });
   }
 
   goBack() {
-    window.history.back();
+    this.router.navigate(['Product'])
   }
 }
