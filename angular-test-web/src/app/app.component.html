@@ -1,4 +1,9 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <app-header></app-header>
 <app-breadcrumb></app-breadcrumb>
-<app-left-menu></app-left-menu>
-<router-outlet></router-outlet>
+<app-left-menu *ngIf="isLoggedIn"></app-left-menu>
+<div *ngIf="isLoggedIn" style="margin-left:140px">
+  <router-outlet  ></router-outlet>
+</div>
+<router-outlet *ngIf="!isLoggedIn"></router-outlet>

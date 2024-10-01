@@ -1,6 +1,6 @@
-<iframe src="https://www.google.com/" style="width:100%; height:100vh"></iframe>
+<iframe src="https://www.google.com/" style="width:100%; height:100vh; border: none;"></iframe>
 
-<div *ngIf="showPopup" class="popup" id="warningPopup">
+<div *ngIf="showPopup" class="popup" id="warningPopup" style="background-color: #368cba; color: red;">
   <span class="close" (click)="closePopup()">&times;</span>
-  <h2>Warning</h2>
+  <h2>WARNING</h2>
 </div>

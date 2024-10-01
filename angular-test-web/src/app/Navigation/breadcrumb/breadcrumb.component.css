@@ -1,28 +1,9 @@
-/*.breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1rem;
-  list-style: none;
-  background-color: #e9ecef;
-  border-radius: 0.25rem;
+
+/* styles.css */
+body, nav.p, div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea {
+  font-family: Calibri, sans-serif; /* Fallback to sans-serif if Calibri is unavailable */
 }
 
-.breadcrumb-item + .breadcrumb-item {
-  padding-left: 0.5rem;
-}
-
-  .breadcrumb-item + .breadcrumb-item::before {
-    display: inline-block;
-    padding-right: 0.5rem;
-    color: #6c757d;
-    content: "/";
-  }
-
-.breadcrumb-item.active {
-  color: #6c757d;
-}
-*/
 a {
   /*background-color: #007BFF;*/
   display: none;

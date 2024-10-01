@@ -1,5 +1,17 @@
-<nav *ngIf="isLoggedIn">
-  <a [routerLink]="['MyProfile']" routerLinkActive="active-link">Profile</a>
-  <a [routerLink]="['ChangePswd']" routerLinkActive="active-link">Change Password</a>
-  <a [routerLink]="['Product']" routerLinkActive="active-link">Products</a>
+<nav style="background-color: #368cba;
+            color: white;
+            padding: 10px 10px;
+            width: 100px;
+            height: 100%;
+            border: 1.5px solid #1f516b;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+  
+">
+  <div style="text-align: left; margin-right: auto;">
+    <a [routerLink]="['MyProfile']" routerLinkActive="active-link">Profile</a>
+    <a [routerLink]="['ChangePswd']" routerLinkActive="active-link" >Change Password</a>
+    <a [routerLink]="['Product']" routerLinkActive="active-link">Products</a>
+  </div>
 </nav>

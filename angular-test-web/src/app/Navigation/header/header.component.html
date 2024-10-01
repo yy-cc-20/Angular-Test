@@ -1,16 +1,25 @@
-<nav>
-  <div *ngIf="isLoggedIn">
+<nav style="background-color: #368cba;
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1.5px solid #1f516b;
+            border-radius: 10px;">
+  <div *ngIf="isLoggedIn" style="margin-right: auto; margin-bottom: 20px;">
     Hello {{ username }}
   </div>
 
-  <div *ngIf="time !== ''">
-    Time: {{ time }}
-  </div>
+  <div style="text-align: right; margin-left: auto;">
+    <div *ngIf="time !== ''" style="margin-bottom: 5px;">
+      Time: {{ time }}
+    </div>
 
-  <div *ngIf="isLoggedIn; else login" >
-    <a href="Logout">Logout</a>
+    <div *ngIf="isLoggedIn; else login">
+      <a href="Logout" style="color: white; text-decoration: none;">Logout</a>
+    </div>
+    <ng-template #login>
+      <a href="Login" style="color: white; text-decoration: none;">Login</a>
+    </ng-template>
   </div>
-  <ng-template #login>
-    <a href="Login">Login</a>
-  </ng-template>
 </nav>

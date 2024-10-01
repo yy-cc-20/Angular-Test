@@ -1,31 +1,14 @@
-/* styles.css */
-nav {
-  background-color: cornflowerblue;
-}
-nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-nav li {
-  margin-right: 20px;
-}
-
 nav a {
   text-decoration: none;
-  color: #333;
-  padding: 5px 10px;
-  border-radius: 4px;
+  color: white;
+  display: block;
+  padding-bottom: 15px;
 }
 
-  nav a.active-link {
-    /*background-color: #007BFF;*/
-    color: burlywood;
-  }
+nav a.active-link {
+  color: burlywood;
+}
 
-/*.active-link {
-    color: yellow;
-  font-weight: bold;
-  text-decoration: underline;
-}*/
+body, nav.p, div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea {
+  font-family: Calibri, sans-serif; /* Fallback to sans-serif if Calibri is unavailable */
+}

@@ -14,6 +14,19 @@ import { BreadcrumbComponent } from './Navigation/breadcrumb/breadcrumb.componen
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  
+export class AppComponent implements OnInit {
+  isLoggedIn: boolean = false;
+  loginLogoutEvent = this.authenticationService.getLoginLogoutEvent()
+
+  constructor(
+    private authenticationService: AuthenticationService,
+  ) {
+    this.loginLogoutEvent.subscribe(() => {
+      this.isLoggedIn = this.authenticationService.isLoggedIn();
+    })
+  }
+
+  ngOnInit() {
+    this.isLoggedIn = this.authenticationService.isLoggedIn();
+  }
 }

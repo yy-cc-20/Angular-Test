@@ -10,23 +10,6 @@ import { AuthenticationService } from '../../Authentication/authentication.servi
   templateUrl: './left-menu.component.html',
   styleUrl: './left-menu.component.css'
 })
-export class LeftMenuComponent implements OnInit {
-  isLoggedIn: boolean = false;
-  loginLogoutEvent = this.authenticationService.getLoginLogoutEvent()
+export class LeftMenuComponent  {
 
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router,
-    private location: Location
-  ) {
-    this.loginLogoutEvent.subscribe(() => {
-      this.isLoggedIn = this.authenticationService.isLoggedIn();
-      console.log('show left menu1')
-    })
-  }
-
-  ngOnInit() {
-    this.isLoggedIn = this.authenticationService.isLoggedIn();
-    console.log('show left menu2')
-  }
 }
