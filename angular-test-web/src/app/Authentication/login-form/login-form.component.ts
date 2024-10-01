@@ -21,8 +21,11 @@ export class LoginFormComponent {
   constructor(
     private apiService: AngularTestApiService,
     private authenticationService: AuthenticationService,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {
+    if (this.authenticationService.isLoggedIn())
+      this.router.navigate(['MyProfile']);
+  }
 
   onSubmit() {
     if (this.loginForm.valid) {

@@ -15,14 +15,5 @@ import { BreadcrumbComponent } from './Navigation/breadcrumb/breadcrumb.componen
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  isLoggedIn = false;
-  loginLogoutEvent = this.authenticationService.getLoginLogoutEvent()
-
-  constructor(
-    private authenticationService: AuthenticationService,
-  ) {
-      this.loginLogoutEvent.subscribe(() => {
-        this.isLoggedIn = this.authenticationService.isLoggedIn();
-      })
-  }
+  
 }

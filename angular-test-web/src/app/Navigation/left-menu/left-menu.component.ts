@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { NgFor, NgIf, UpperCasePipe, Location } from '@angular/common';
 import { AuthenticationService } from '../../Authentication/authentication.service';
@@ -10,11 +10,8 @@ import { AuthenticationService } from '../../Authentication/authentication.servi
   templateUrl: './left-menu.component.html',
   styleUrl: './left-menu.component.css'
 })
-export class LeftMenuComponent {
+export class LeftMenuComponent implements OnInit {
   isLoggedIn: boolean = false;
-  highlightMyProfile = false;
-  highlightChangePassword = false;
-  highlightProducts = false;
   loginLogoutEvent = this.authenticationService.getLoginLogoutEvent()
 
   constructor(
@@ -24,6 +21,12 @@ export class LeftMenuComponent {
   ) {
     this.loginLogoutEvent.subscribe(() => {
       this.isLoggedIn = this.authenticationService.isLoggedIn();
+      console.log('show left menu1')
     })
+  }
+
+  ngOnInit() {
+    this.isLoggedIn = this.authenticationService.isLoggedIn();
+    console.log('show left menu2')
   }
 }

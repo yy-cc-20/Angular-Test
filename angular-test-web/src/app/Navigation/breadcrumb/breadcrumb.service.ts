@@ -14,6 +14,5 @@ export class BreadcrumbService {
 
   setProductName(name: string): void {
     this.productNameSubject.next(name);
-    console.log(`set product name to ${this.productNameSubject.value}`)
   }
 }

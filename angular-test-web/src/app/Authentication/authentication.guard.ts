@@ -9,12 +9,10 @@ export const authenticationGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const location = inject(Location);
 
-  if (!authenticationService.isLoggedIn() && location.isCurrentPathEqualTo('/Login'))
-    return true;
-  else if (authenticationService.isLoggedIn() && location.isCurrentPathEqualTo('/Login'))
-    return router.parseUrl('MyProfile')
-  else if (authenticationService.isLoggedIn())
+  //if (authenticationService.isLoggedIn() && location.isCurrentPathEqualTo('/Login'))
+  //  return router.createUrlTree(['MyProfile']);
+  if (authenticationService.isLoggedIn() /*|| location.isCurrentPathEqualTo('/Login')*/)
     return true;
   else
-    return router.parseUrl('Unauthorized');
+    return router.createUrlTree(['Unauthorized']);
 };
