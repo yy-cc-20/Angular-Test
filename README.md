@@ -4,7 +4,7 @@
 - [Features](#features)
 - [Technology Used](#technology-used)
 - [Installation](#installation)
-- [Design Pattern](#design-pattern)
+- [Frontend Design](#frontend-design)
 - [Database Design](#database-design)
 - [API Endpoints](#api-endpoints)
 
@@ -54,8 +54,34 @@ npm install
 ng serve --open
 ```
 
-## Design Pattern
-Use data transfer objects to map between models and api request/response.
+## Frontend Design
+Components
+- Authentication
+    - ForgetPasswordComponent
+    - LoginFormComponent
+    - LogoutComponent
+    - UnauthorizedComponent
+- DashboardComponent
+- Navigation
+    - BreadcrumbComponent
+    - HeaderComponent
+    - LeftMenuComponent
+- Product
+    - ProductListComponent
+    - ProductDetailsComponent
+- User
+    - ChangePasswordFormComponent
+    - MyProfileComponent
+
+Services
+- AngularTestApiService
+- AuthenticationService
+- BreadcrumbService
+
+Guards
+- AuthenticationGuard
+
+Routes
 
 ## Database Design
 user
