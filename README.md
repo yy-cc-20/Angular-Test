@@ -7,6 +7,7 @@
 - [Frontend Design](#frontend-design)
 - [Database Design](#database-design)
 - [API Endpoints](#api-endpoints)
+- [Future Improvement](#future-improvement)
 
 ## Features
 - Login
@@ -58,8 +59,8 @@ ng serve --open
 Components
 - Authentication
     - ForgetPasswordComponent
-    - LoginFormComponent
-    - LogoutComponent
+    - LoginFormComponent: send login credentials to api
+    - LogoutComponent: Delete user session
     - UnauthorizedComponent
 - DashboardComponent
 - Navigation
@@ -67,16 +68,16 @@ Components
     - HeaderComponent
     - LeftMenuComponent
 - Product
-    - ProductListComponent
-    - ProductDetailsComponent
+    - ProductListComponent: get product list from api
+    - ProductDetailsComponent: get product details from api
 - User
-    - ChangePasswordFormComponent
-    - MyProfileComponent
+    - ChangePasswordFormComponent: send new password to api
+    - MyProfileComponent: get user profile from api
 
 Services
-- AngularTestApiService
-- AuthenticationService
-- BreadcrumbService
+- AngularTestApiService: Calling api and handle errors from api
+- AuthenticationService: update the value in angular, so, no need to refresh again after login logout
+- BreadcrumbService: Get product name and display in breadcrumb
 
 Guards
 - AuthenticationGuard
@@ -196,3 +197,11 @@ Response Body:
   ]
 }
 ```
+
+## Future Improvement
+- Hash the password in database.
+- Download the product image and save them in an online drive. So, no need to get the image from external site.
+- Add a custom validation to validate uniqueness in model, rather than validate the input in the controller.
+- Send temporary password to user's email for Forget Password feature. 
+- Encrypt new password when sending it to api
+- JWT
