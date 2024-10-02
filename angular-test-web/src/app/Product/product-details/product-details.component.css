@@ -1,29 +1,63 @@
 table {
   width: 100%;
   border-collapse: collapse;
+  border-top: 4px solid #368cba;
+  border-bottom: 10px solid #0874d3;
+}
+
+
+tr:nth-child(odd) {
+  background-color: #7ad3ef;
 }
 
 th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  /*border: 1px solid #ddd;*/
+  padding: 5px 10px;
   text-align: left;
+  /*border-bottom: 2px solid #368cba;
+  border-top: 2px solid #368cba;*/
+  border-right: 2px solid #368cba;
 }
 
 th {
-  /*background-color: #f2f2f2;*/
-  /*font-weight: bold;*/
+  background-color: white;
+  
+  font-weight: normal;
+  /*color: #368cba;*/
 }
 
-tr:nth-child(even) {
-  /*background-color: #f9f9f9;*/
+.variance {
+  font-weight: bold;
+  border: none;
+  background-color: #0874d3;
 }
 
-tr:hover {
-  /*background-color: #f1f1f1;*/
-}
 
 /* styles.css */
-body, nav.p, div,
-h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea {
+body, nav.p, div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea {
   font-family: Calibri, sans-serif; /* Fallback to sans-serif if Calibri is unavailable */
+}
+
+p {
+    text-align: center;
+    color: #368cba;
+    font-size: 30px;
+    margin: 0px;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button {
+  position: absolute;
+  color: black;
+  padding: 5px 15px;
+  background-color: #368cba;
+  border: none;
+  font-size: 20px;
+  margin-top: 15px;
+  right: 10px;
 }

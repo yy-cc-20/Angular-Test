@@ -1,20 +1,21 @@
 
 <div *ngIf="!invalidProduct; else invalid">
-  <h2>{{ product.name }}</h2>
+  <p>{{ product.name }}</p>
   <img src="{{ product.image_path }}" alt="Product image" width="300" height="200">
 
   <table>
     <tr>
       <th>Description</th>
-      <td class="description">{{ product.description }}</td>
+      <td class="description" style="background-color: #7ad3ef;">{{ product.description }}</td>
     </tr>
 
-    <tr>
-      <th>Variance</th>
+    <tr style="background-color: #0874d3;">
+      <th class="variance">Variance</th>
+      <td></td>
     </tr>
     <tr *ngFor="let variance of product.product_variance_list">
       <th>{{ variance.info }} </th>
-      <td>{{ variance.price | number:'1.0-0' }} </td>
+      <td class="variance-td">{{ variance.price | number:'1.0-0' }} </td>
     </tr>
   </table>
   <button (click)="goBack()">Back</button>
@@ -24,14 +25,13 @@
   <p style="color: red;
       font-size: 50px;
       position: fixed;
-top: 50%;
+top: 40%;
 left: 50%;
 transform: translate(-50%, -50%);">Invalid Product ID</p>
   <button (click)="goBack()"
           style="
       position: fixed;
 top: 90%;
-left: 90%;
 transform: translate(-50%, -50%);"
           >Back</button>
 </ng-template>

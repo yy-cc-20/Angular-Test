@@ -4,22 +4,18 @@ table {
 }
 
 th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  /*border: 1px solid #ddd;*/
+  padding: 8px 10px;
   text-align: left;
+
 }
 
 th {
   /*background-color: #f2f2f2;*/
+  border-bottom: 2px solid #368cba;
+  border-top: 2px solid #368cba;
   font-weight: bold;
-}
-
-tr:nth-child(even) {
-  /*background-color: #f9f9f9;*/
-}
-
-tr:hover {
-  background-color: #f1f1f1;
+  color: #368cba;
 }
 
 .description {
@@ -32,4 +28,9 @@ tr:hover {
   line-height: 1.5em; /* Adjust line height as needed */
   max-height: 4em; /* 3 lines * line-height */
   border: none;
+}
+
+/* styles.css */
+body, nav.p, div, h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea {
+  font-family: Calibri, sans-serif; /* Fallback to sans-serif if Calibri is unavailable */
 }

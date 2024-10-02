@@ -1,11 +1,17 @@
-h2 {
+p {
     color: grey;
+    font-size: 20px;
+    text-align: center;
 }
 
 .sign-in-container {
-  width: 450px;
+  width: 400px;
   margin: 0 auto;
   padding: 20px;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   /*border: 1px solid #ddd;*/
   /*border-radius: 4px;*/
   /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
@@ -42,7 +48,7 @@ h2 {
   background-color: crimson;
   color: white;
   border: none;
-  padding: 10px 30px;
+  padding: 10px 25px;
   font-size: 16px;
   /*border-radius: 4px;*/
   cursor: pointer;
@@ -76,6 +82,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, button, input, select, textarea {
 .form-control {
   padding: 10px;
   font-size: 15px;
-  width: 430px;
+  width: 380px;
   border: 1px solid #ddd;
 }

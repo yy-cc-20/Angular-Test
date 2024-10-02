@@ -9,10 +9,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let product of productList">
-      <td><a href="Product/{{ product.id }}">{{ product.name }}</a></td>
+      <td style="width: 10%;"><a href="Product/{{ product.id }}" style="color: #368cba;">{{ product.name }}</a></td>
       <td class="description">{{ product.description }}</td>
       <td><img src="{{ product.image_path }}" alt="Product image" width="150" ></td>
-      <td>{{ product.lower_price_range | number:'1.0-0' }} - {{ product.upper_price_range | number:'1.0-0' }}</td>
+      <td style="color: #368cba;">{{ product.lower_price_range | number:'1.0-0' }} - {{ product.upper_price_range | number:'1.0-0' }}</td>
     </tr>
   </tbody>
 </table>
